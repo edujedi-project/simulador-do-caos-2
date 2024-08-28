@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: simulador-certificado
+spec:
+  secretName: simulador-secreto
+  duration: 2160h # 90 dias
+  renewBefore: 360h # 15 dias
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: simulador.edujedi.com.br
+  dnsNames:
+    - simulador.edujedi.com.br

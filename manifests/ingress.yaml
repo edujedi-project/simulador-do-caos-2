@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: simulador-do-caos
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: simulador.edujedi.com.br
+    - http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: simulador-do-caos
+                port:
+                  number: 3000
+  tls:
+  - hosts:
+    - simulador.edujedi.com.br 
+    secretName: letsencrypt-prod  
